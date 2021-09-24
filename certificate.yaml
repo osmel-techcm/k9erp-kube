@@ -1,0 +1,17 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: k9erp-tls
+  namespace: default
+spec:
+  dnsNames:
+    - masterapi.k9erp.net
+    - master.k9erp.net
+    - appapi.k9erp.net
+    - app.k9erp.net
+    - reportapi.k9erp.net
+    - fmapi.k9erp.net
+  secretName: k9erp-tls
+  issuerRef:
+    name: letsencrypt-cluster-issuer
+    kind: ClusterIssuer

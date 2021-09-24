@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tenant-fm-api
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  tls:
+  - hosts:
+    - fmapi.k9erp.net
+    secretName: k9erp-tls
+  ingressClassName: nginx
+  rules:
+  - host: fmapi.k9erp.net
+    http:
+      paths:
+      - backend:
+          service:
+            name: tenant-fm-api
+            port:
+              number: 80
+        path: /
+        pathType: Prefix

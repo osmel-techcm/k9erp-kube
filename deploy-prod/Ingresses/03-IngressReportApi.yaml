@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tenant-report-api
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  tls:
+  - hosts:
+    - reportapi.k9erp.net
+    secretName: k9erp-tls
+  ingressClassName: nginx
+  rules:
+  - host: reportapi.k9erp.net
+    http:
+      paths:
+      - backend:
+          service:
+            name: tenant-report-api
+            port:
+              number: 80
+        path: /
+        pathType: Prefix

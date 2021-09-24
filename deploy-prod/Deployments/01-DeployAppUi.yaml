@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tenant-ui
+  labels:
+    role: tenant-ui
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      role: tenant-ui
+      tier: web
+  template:
+    metadata:
+      labels:
+        role: tenant-ui
+        tier: web
+    spec:
+      containers:
+      - name: tenant-ui
+        image: osmeltechcm/tenant-ui
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        env:
+        - name: API_URL_MASTER
+          value: "https://masterapi.k9erp.net/"
+        - name: API_URL
+          value: "https://appapi.k9erp.net/"
+        - name: API_URL_DRIVEMANAGER
+          value: "https://fmapi.k9erp.net/"
+        - name: API_URL_REPORT
+          value: "https://reportapi.k9erp.net/"

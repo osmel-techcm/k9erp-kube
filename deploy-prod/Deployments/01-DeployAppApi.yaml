@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tenant-api
+  labels:
+    role: tenant-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      role: tenant-api
+      tier: web
+  template:
+    metadata:
+      labels:
+        role: tenant-api
+        tier: web
+    spec:
+      containers:
+      - name: tenant-api
+        image: osmeltechcm/tenant-api
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        env:
+        - name: SERVER
+          value: "db.k9erp.net"
+        - name: USER
+          value: "k9erp_service"
+        - name: PASSWORD
+          value: "DN~4/Skc>=DXAMUZ"

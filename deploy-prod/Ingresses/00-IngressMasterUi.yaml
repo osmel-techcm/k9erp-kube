@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: master-ui
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  tls:
+  - hosts:
+    - master.k9erp.net
+    secretName: k9erp-tls
+  ingressClassName: nginx
+  rules:
+  - host: master.k9erp.net
+    http:
+      paths:
+      - backend:
+          service:
+            name: master-ui
+            port:
+              number: 80
+        path: /
+        pathType: Prefix

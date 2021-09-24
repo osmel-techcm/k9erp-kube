@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: master-ui
+  labels:
+    role: master-ui
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      role: master-ui
+      tier: web
+  template:
+    metadata:
+      labels:
+        role: master-ui
+        tier: web
+    spec:
+      containers:
+      - name: master-ui
+        image: osmeltechcm/master-ui
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        env:
+        - name: API_URL
+          value: "https://masterapi.k9erp.net/"
