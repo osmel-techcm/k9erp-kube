@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: socket-api
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  tls:
+  - hosts:
+    - live.k9erp.net
+    secretName: k9erp-tls
+  ingressClassName: nginx
+  rules:
+  - host: live.k9erp.net
+    http:
+      paths:
+      - backend:
+          service:
+            name: socket-api
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
