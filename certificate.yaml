@@ -12,6 +12,7 @@ spec:
     - reportapi.k9erp.net
     - fmapi.k9erp.net
     - logapi.k9erp.net
+    - live.k9erp.net
   secretName: k9erp-tls
   issuerRef:
     name: letsencrypt-cluster-issuer

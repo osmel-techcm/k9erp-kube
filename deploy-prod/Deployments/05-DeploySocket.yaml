@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: socket-api
+  labels:
+    role: socket-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      role: socket-api
+      tier: web
+  template:
+    metadata:
+      labels:
+        role: socket-api
+        tier: web
+    spec:
+      containers:
+      - name: socket-api
+        image: osmeltechcm/socket-api
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
