@@ -5,7 +5,7 @@ metadata:
   labels:
     role: socket-api
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       role: socket-api
@@ -22,3 +22,6 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 80
+        env:
+        - name: LOG_URL
+          value: "https://logapi.k9erp.net/"
