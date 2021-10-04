@@ -24,4 +24,4 @@ spec:
         - containerPort: 80
         env:
         - name: LOG_URL
-          value: "https://logapi.k9erp.net/"
+          value: "https://logapi.k9erp.net"
