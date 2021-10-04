@@ -31,3 +31,5 @@ spec:
           value: "https://fmapi.k9erp.net/"
         - name: API_URL_REPORT
           value: "https://reportapi.k9erp.net/"
+        - name: API_URL_SIGNALR
+          value: "https://live.k9erp.net/"
